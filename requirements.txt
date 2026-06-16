@@ -4,8 +4,8 @@ torchvision==0.27.0
 numpy
 pandas
 pillow
-joblib
+joblib==1.4.2
 xgboost
-scikit-learn
+scikit-learn==1.6.1
 gunicorn
 reportlab
