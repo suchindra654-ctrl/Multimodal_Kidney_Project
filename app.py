@@ -118,11 +118,7 @@ print("Class Names Loaded")
 # DEVICE
 # =====================================================
 
-device = torch.device(
-    "cuda"
-    if torch.cuda.is_available()
-    else "cpu"
-)
+device = torch.device("cpu")
 
 print(f"Device: {device}")
 
@@ -130,33 +126,40 @@ print(f"Device: {device}")
 # ULTRASOUND MODEL
 # =====================================================
 
-print("Loading Ultrasound Model...")
+ultrasound_model = None
+def get_ultrasound_model():
 
-ultrasound_model = models.resnet18(
-    weights=None
-)
+    global ultrasound_model
 
-num_features = (
-    ultrasound_model.fc.in_features
-)
+    if ultrasound_model is None:
 
-ultrasound_model.fc = nn.Linear(
-    num_features,
-    2
-)
+        print("Loading Ultrasound Model...")
 
-ultrasound_model.load_state_dict(
-    torch.load(
-        "models/ultrasound_model.pth",
-        map_location=device
-    )
-)
+        ultrasound_model = models.resnet18(
+            weights=None
+        )
 
-ultrasound_model.to(device)
+        num_features = (
+            ultrasound_model.fc.in_features
+        )
 
-ultrasound_model.eval()
+        ultrasound_model.fc = nn.Linear(
+            num_features,
+            2
+        )
 
-print("Ultrasound Model Loaded")
+        ultrasound_model.load_state_dict(
+            torch.load(
+                "models/ultrasound_model.pth",
+                map_location="cpu"
+            )
+        )
+
+        ultrasound_model.eval()
+
+        print("Ultrasound Model Loaded")
+
+    return ultrasound_model
 
 # =====================================================
 # IMAGE TRANSFORM
@@ -319,9 +322,8 @@ def predict_ultrasound_image(
 
         with torch.no_grad():
 
-            outputs = ultrasound_model(
-                image_tensor
-            )
+            model = get_ultrasound_model()
+            outputs = model(image)
 
             probabilities = torch.softmax(
                 outputs,

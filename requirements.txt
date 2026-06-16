@@ -1,6 +1,6 @@
 flask
-torch
-torchvision
+torch==2.7.1
+torchvision==0.22.1
 numpy
 pandas
 pillow
