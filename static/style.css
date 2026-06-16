@@ -1,0 +1,961 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#ffffff;
+    min-height:100vh;
+    color:#0f172a;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+    background:
+    rgba(15,23,42,0.85);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.1);
+
+    padding:15px 50px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+    0 4px 20px rgba(0,0,0,0.25);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:white;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+}
+
+.logo-icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:white;
+    color:#2563eb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.logo h2{
+    font-size:26px;
+}
+
+.logo p{
+    font-size:12px;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#dbeafe;
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero,
+.header{
+
+    text-align:center;
+
+    padding:100px 30px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:30px;
+
+    margin:40px;
+
+    color:white;
+}
+
+.main-title{
+    max-width:1200px;
+    margin:auto;
+    font-size:42px;
+    font-weight:700;
+    color:white;
+    line-height:1.4;
+}
+
+.subtitle,
+.header p{
+    max-width:1000px;
+    margin:20px auto;
+    color:#f8fafc;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.header h1{
+    color:#2563eb;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    max-width:1400px;
+    margin:40px auto;
+    padding:20px;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card,
+.form-card,
+.upload-card,
+.result-card,
+.reports-card,
+.module-card,
+.stat-card{
+
+    background:rgba(255,255,255,0.92);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.3);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.15);
+}
+
+/* =====================================================
+   SECTION TITLES
+===================================================== */
+
+.section-title{
+    color:#2563eb;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+.section-heading{
+    text-align:center;
+    color:#2563eb;
+    font-size:38px;
+    margin-bottom:35px;
+}
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.form-grid,
+.stats,
+.modules,
+.info-section,
+.features,
+.score-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#0f172a;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    padding:12px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:10px;
+
+    font-size:15px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+
+    background:#2563eb;
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.btn-success{
+    background:#16a34a;
+}
+
+.btn-success:hover{
+    background:#15803d;
+}
+
+.btn-secondary{
+    background:#64748b;
+}
+
+.btn-secondary:hover{
+    background:#475569;
+}
+
+.submit-section{
+    text-align:center;
+    margin-top:35px;
+}
+
+/* =====================================================
+   MODULE CARDS
+===================================================== */
+
+.module-card,
+.info-card,
+.feature-card,
+.stat-card,
+.score-card{
+
+    background:white;
+
+    border:1px solid #dbeafe;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:0.3s;
+}
+
+.module-card:hover{
+    transform:translateY(-5px);
+}
+
+.module-card i,
+.info-card i,
+.feature-card i,
+.stat-card i,
+.score-card i{
+
+    font-size:40px;
+
+    color:#2563eb;
+
+    margin-bottom:12px;
+}
+
+.module-card h3,
+.info-card h3,
+.feature-card h3,
+.score-card h3{
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+}
+
+.module-card p,
+.info-card p,
+.feature-card p{
+
+    color:#64748b;
+
+    line-height:1.8;
+}
+
+/* =====================================================
+   UPLOAD SECTION
+===================================================== */
+
+.upload-zone{
+
+    border:3px dashed #93c5fd;
+
+    border-radius:20px;
+
+    background:white;
+
+    padding:50px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.upload-zone:hover{
+
+    background:#eff6ff;
+
+    border-color:#2563eb;
+}
+
+.upload-zone i{
+
+    font-size:70px;
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+}
+
+input[type=file]{
+    display:none;
+}
+
+.preview-container{
+
+    display:none;
+
+    text-align:center;
+
+    margin-top:25px;
+}
+
+.preview-container img{
+
+    max-width:450px;
+
+    width:100%;
+
+    border-radius:15px;
+
+    border:2px solid #dbeafe;
+}
+
+/* =====================================================
+   RESULT PAGE
+===================================================== */
+
+.result-icon{
+    font-size:90px;
+    margin-bottom:20px;
+}
+
+.healthy{
+    color:#16a34a;
+}
+
+.risk{
+    color:#dc2626;
+}
+
+.prediction{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.report-id{
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.confidence-value{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+}
+
+.progress{
+
+    width:100%;
+
+    height:25px;
+
+    background:#e2e8f0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    background:#2563eb;
+}
+
+.score-value{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+}
+
+/* =====================================================
+   REPORT TABLE
+===================================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #dbeafe;
+    text-align:center;
+}
+
+tr:hover{
+    background:#eff6ff;
+}
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info-box,
+.risk-box{
+
+    margin-top:30px;
+
+    background:#eff6ff;
+
+    border-left:5px solid #2563eb;
+
+    padding:20px;
+
+    border-radius:10px;
+}
+
+.info-box h3,
+.risk-box h3{
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+}
+
+.info-box p,
+.risk-box p{
+
+    color:#475569;
+
+    line-height:1.8;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#2563eb;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-top:50px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+    }
+
+    .main-title{
+
+        font-size:30px;
+    }
+
+    .header h1{
+
+        font-size:30px;
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+    }
+}/* ==========================================
+   DASHBOARD SECTIONS
+========================================== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    padding:50px;
+}
+
+.stat-card{
+    background:#f8fbff;
+    border:1px solid #dbeafe;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(37,99,235,0.08);
+}
+
+.stat-card i{
+    font-size:45px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.modules{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding:0 50px 60px;
+}
+
+.module-card{
+    background:#f8fbff;
+    border:1px solid #dbeafe;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(37,99,235,0.08);
+}
+
+.reports-section{
+    padding:60px 50px;
+    background:#eff6ff;
+}
+
+.reports-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.report-box{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.report-box i{
+    font-size:60px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.about{
+    padding:70px 50px;
+    text-align:center;
+}
+
+.about h2{
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.about p{
+    max-width:1100px;
+    margin:auto;
+    color:#475569;
+    line-height:2;
+    font-size:18px;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:white;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:5px;
+}
+
+.logo h2{
+    font-size:28px;
+    font-weight:700;
+}
+
+.logo p{
+    font-size:13px;
+    opacity:0.95;
+}
+.hero-logo{
+    width:140px;
+    margin-bottom:20px;
+}/* ==========================================
+   PROFESSIONAL BACKGROUNDS
+========================================== */
+
+.dashboard-page{
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.45),
+        rgba(30,64,175,0.35)
+    ),
+    url("images/dashboard_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.clinical-page{
+    background:
+    linear-gradient(
+        rgba(255,255,255,0.88),
+        rgba(219,234,254,0.82)
+    ),
+    url("images/numerical_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.ultrasound-page{
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.50),
+        rgba(30,64,175,0.40)
+    ),
+    url("images/ultrasound_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.fusion-page{
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.45),
+        rgba(30,64,175,0.35)
+    ),
+    url("images/fusion_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.reports-page{
+    background:
+    linear-gradient(
+        rgba(255,255,255,0.90),
+        rgba(219,234,254,0.85)
+    ),
+    url("images/reports_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.result-page{
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.45),
+        rgba(30,64,175,0.35)
+    ),
+    url("images/result_bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+/* ==========================================
+   PREMIUM HERO
+========================================== */
+
+.hero,
+.header{
+
+    text-align:center;
+
+    padding:120px 40px;
+
+    background:
+    linear-gradient(
+        rgba(15,23,42,0.35),
+        rgba(15,23,42,0.15)
+    );
+
+    backdrop-filter:blur(6px);
+
+    border-radius:30px;
+
+    margin:40px;
+
+    color:white;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* ==========================================
+   PREMIUM CARDS
+========================================== */
+
+.module-card,
+.stat-card,
+.report-box,
+.score-card,
+.info-card,
+.feature-card{
+
+    background:rgba(255,255,255,0.96);
+
+    backdrop-filter:blur(12px);
+
+    transition:0.3s ease;
+}
+
+.module-card:hover,
+.stat-card:hover,
+.report-box:hover,
+.score-card:hover,
+.info-card:hover,
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 50px rgba(37,99,235,0.25);
+}
+
+/* ==========================================
+   HERO LOGO
+========================================== */
+
+.hero-logo{
+
+    width:180px;
+
+    margin-bottom:20px;
+}
+/* ==========================================
+   FINAL UI POLISH
+========================================== */
+
+/* Clinical Page */
+
+.clinical-page .header{
+    padding:80px 40px;
+
+    background:
+    rgba(255,255,255,0.55);
+
+    backdrop-filter:blur(15px);
+}
+
+/* Ultrasound */
+
+.upload-card{
+    background:
+    rgba(255,255,255,0.92);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+}
+
+/* Multimodal */
+
+.fusion-page form{
+
+    background:
+    rgba(255,255,255,0.92);
+
+    padding:40px;
+
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* Results */
+
+.result-card{
+
+    background:
+    rgba(255,255,255,0.94);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:30px;
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,0.25);
+}
+
+/* Reports */
+
+.reports-section{
+
+    background:
+    rgba(255,255,255,0.75);
+
+    backdrop-filter:blur(10px);
+}
+
+/* Premium Effects */
+
+.module-card,
+.stat-card,
+.report-box,
+.form-card,
+.upload-card,
+.result-card{
+
+    transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.module-card:hover,
+.stat-card:hover,
+.report-box:hover,
+.form-card:hover,
+.upload-card:hover,
+.result-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 50px rgba(37,99,235,0.25);
+}
+
+/* Better Hero Title */
+
+.main-title{
+    font-size:56px;
+    font-weight:800;
+    text-shadow:
+    0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* Bigger Logo */
+
+.hero-logo{
+    width:220px;
+}

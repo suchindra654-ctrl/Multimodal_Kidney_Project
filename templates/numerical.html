@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical CKD Prediction | KidneyAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+
+</head>
+<body class="clinical-page">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+       <div class="logo">
+
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="KidneyAI Logo">
+
+    <div>
+
+        <h2>KidneyAI</h2>
+
+        <p>
+            Multimodal Disease Assessment Platform
+        </p>
+
+    </div>
+
+</div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/numerical">Clinical</a></li>
+            <li><a href="/ultrasound">Ultrasound</a></li>
+            <li><a href="/combined">Multimodal</a></li>
+            <li><a href="/reports">Reports</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- HEADER -->
+
+    <section class="header">
+
+        <h1>
+            Clinical Chronic Kidney Disease Prediction
+        </h1>
+
+        <p>
+            Enter the patient's clinical and laboratory parameters
+            to assess the likelihood of Chronic Kidney Disease using
+            the trained XGBoost Machine Learning model.
+        </p>
+
+    </section>
+
+    <!-- FORM -->
+
+    <div class="container">
+
+        <div class="form-card">
+
+            <h2 class="section-title">
+                Patient Clinical Parameters
+            </h2>
+
+            <form action="/predict_numerical" method="POST">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" step="any" name="age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Blood Pressure</label>
+                        <input type="number" step="any" name="bp" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Specific Gravity</label>
+                        <input type="number" step="0.001" name="sg">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Albumin</label>
+                        <input type="number" step="any" name="al">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sugar</label>
+                        <input type="number" step="any" name="su">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Blood Glucose Random</label>
+                        <input type="number" step="any" name="bgr">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Blood Urea</label>
+                        <input type="number" step="any" name="bu">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Serum Creatinine</label>
+                        <input type="number" step="0.01" name="sc">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sodium</label>
+                        <input type="number" step="any" name="sod">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Potassium</label>
+                        <input type="number" step="0.01" name="pot">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hemoglobin</label>
+                        <input type="number" step="0.1" name="hemo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Packed Cell Volume</label>
+                        <input type="number" step="any" name="pcv">
+                    </div>
+
+                    <div class="form-group">
+                        <label>White Blood Cell Count</label>
+                        <input type="number" step="any" name="wc">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Red Blood Cell Count</label>
+                        <input type="number" step="0.1" name="rc">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hypertension (0/1)</label>
+                        <input type="number" min="0" max="1" name="htn">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Diabetes Mellitus (0/1)</label>
+                        <input type="number" min="0" max="1" name="dm">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Coronary Artery Disease (0/1)</label>
+                        <input type="number" min="0" max="1" name="cad">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pedal Edema (0/1)</label>
+                        <input type="number" min="0" max="1" name="pe">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anemia (0/1)</label>
+                        <input type="number" min="0" max="1" name="ane">
+                    </div>
+
+                </div>
+
+                <div class="submit-section">
+
+                    <button type="submit" class="btn">
+
+                        <i class="fas fa-stethoscope"></i>
+                        Predict CKD Risk
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- MODEL INFO -->
+
+            <div class="info-section">
+
+                <div class="info-card">
+
+                    <i class="fas fa-brain"></i>
+
+                    <h3>Machine Learning</h3>
+
+                    <p>
+                        XGBoost-based clinical prediction model.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h3>Accuracy</h3>
+
+                    <p>
+                        Approximately 97.5% prediction accuracy.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-file-medical"></i>
+
+                    <h3>Auto Reports</h3>
+
+                    <p>
+                        Reports generated and stored automatically.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-shield-heart"></i>
+
+                    <h3>Clinical Support</h3>
+
+                    <p>
+                        Assists in early kidney disease assessment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>
+            © 2026 KidneyAI | Clinical CKD Prediction Module
+        </p>
+
+    </footer>
+
+</body>
+</html>
+

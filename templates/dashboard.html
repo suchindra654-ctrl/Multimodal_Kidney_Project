@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidneyAI | AI-Powered Kidney Disease Prediction</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+
+</head>
+<body class="dashboard-page">
+
+    <!-- ==========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="KidneyAI Logo">
+
+    <div>
+
+        <h2>KidneyAI</h2>
+
+        <p>
+            Multimodal Disease Assessment Platform
+        </p>
+
+    </div>
+
+</div>
+
+        <ul class="nav-links">
+
+            <li><a href="/">Home</a></li>
+
+            <li><a href="/numerical">Clinical</a></li>
+
+            <li><a href="/ultrasound">Ultrasound</a></li>
+
+            <li><a href="/combined">Multimodal</a></li>
+
+            <li><a href="/reports">Reports</a></li>
+
+        </ul>
+
+    </nav>
+
+    <!-- ==========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="KidneyAI Logo"
+        class="hero-logo">
+
+    <h1 class="main-title">
+
+        A Multimodal Chronic Kidney Disease Prediction Framework
+        Using Clinical Parameters and Renal Ultrasound Imaging
+
+    </h1>
+
+</section>
+
+    <!-- ==========================
+         STATS
+    ========================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <i class="fas fa-chart-line"></i>
+
+            <h2>97.5%</h2>
+
+            <p>Clinical Model Accuracy</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-x-ray"></i>
+
+            <h2>9416</h2>
+
+            <p>Ultrasound Images Used</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-brain"></i>
+
+            <h2>AI Fusion</h2>
+
+            <p>Clinical + Imaging Analysis</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-file-medical"></i>
+
+            <h2>Reports</h2>
+
+            <p>Automated Report Generation</p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         MODULES
+    ========================== -->
+
+    <h2 class="section-title">
+        System Modules
+    </h2>
+
+    <section class="modules">
+
+        <div class="module-card">
+
+            <i class="fas fa-heartbeat"></i>
+
+            <h3>Clinical CKD Prediction</h3>
+
+            <p>
+                Predict Chronic Kidney Disease using
+                patient clinical parameters and
+                laboratory findings.
+            </p>
+
+            <a href="/numerical" class="btn">
+                Start Clinical Analysis
+            </a>
+
+        </div>
+
+        <div class="module-card">
+
+            <i class="fas fa-x-ray"></i>
+
+            <h3>Ultrasound Analysis</h3>
+
+            <p>
+                Upload renal ultrasound images
+                and classify kidney abnormalities
+                using deep learning.
+            </p>
+
+            <a href="/ultrasound" class="btn">
+                Analyze Ultrasound
+            </a>
+
+        </div>
+
+        <div class="module-card">
+
+            <i class="fas fa-brain"></i>
+
+            <h3>Multimodal Fusion</h3>
+
+            <p>
+                Combine clinical and imaging
+                predictions for comprehensive
+                kidney disease assessment.
+            </p>
+
+            <a href="/combined" class="btn">
+                Run Fusion Analysis
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         REPORTS
+    ========================== -->
+
+    <section class="reports-section">
+
+        <div class="reports-header">
+
+            <h2>Medical Reports</h2>
+
+            <a href="/reports" class="btn">
+                View Reports
+            </a>
+
+        </div>
+
+        <div class="report-box">
+
+            <i class="fas fa-file-medical"></i>
+
+            <h3>Report Management System</h3>
+
+            <br>
+
+            <p>
+                View, manage and download previous
+                AI-generated kidney assessment reports.
+                Reports are automatically stored after
+                each prediction for future reference.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         ABOUT
+    ========================== -->
+
+    <section class="about">
+
+        <h2>Project Overview</h2>
+
+        <p>
+
+            KidneyAI is a multimodal healthcare decision support system
+            designed to assist in kidney disease assessment using clinical
+            biomarkers and renal ultrasound imaging. The framework integrates
+            machine learning and deep learning models into a unified platform
+            capable of generating automated diagnostic reports and supporting
+            early disease detection.
+
+        </p>
+
+    </section>
+
+    <!-- ==========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+
+            © 2026 KidneyAI |
+            Multimodal Chronic Kidney Disease Prediction Framework
+
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+    "test_time": "2026-06-15 18:33:26",
+    "device": "cpu",
+    "models_status": {
+        "xgboost_clinical": "\u2713 LOADED",
+        "feature_columns": "\u2713 LOADED (24 features)",
+        "label_encoders": "\u2713 LOADED (14 encoders)",
+        "ultrasound_cnn": "\u2713 LOADED",
+        "image_transform": "\u2713 LOADED"
+    },
+    "clinical_model_test": {
+        "status": "\u2713 PASSED",
+        "prediction": "Not CKD",
+        "confidence": 22.26
+    },
+    "ultrasound_model_test": {
+        "status": "\u2713 PASSED",
+        "prediction": "Normal",
+        "confidence": 99.64158630371094
+    },
+    "multimodal_fusion_test": {
+        "status": "\u2713 PASSED",
+        "fusion_score": 35.6015902304064,
+        "fusion_prediction": "Not CKD"
+    }
+}

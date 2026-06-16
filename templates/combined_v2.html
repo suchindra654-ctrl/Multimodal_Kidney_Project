@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Multimodal Kidney Assessment</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style_v2.css') }}">
+
+</head>
+
+<body class="fusion-v2-page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img src="{{ url_for('static', filename='logo.png') }}">
+
+            <h2>KidneyAI</h2>
+
+            <p>Multimodal CKD Platform</p>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="/">
+                    <i class="fas fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/numerical">
+                    <i class="fas fa-heart-pulse"></i>
+                    Clinical
+                </a>
+            </li>
+
+            <li>
+                <a href="/ultrasound">
+                    <i class="fas fa-x-ray"></i>
+                    Ultrasound
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fas fa-brain"></i>
+                    Multimodal
+                </a>
+            </li>
+
+            <li>
+                <a href="/reports">
+                    <i class="fas fa-file-medical"></i>
+                    Reports
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <section class="topbar">
+
+            <h1>Multimodal Kidney Disease Assessment</h1>
+
+            <p>
+
+                Clinical Machine Learning +
+                Ultrasound Deep Learning +
+                AI Fusion Engine
+
+            </p>
+
+        </section>
+
+        <!-- FUSION INFO -->
+
+        <div class="fusion-banner">
+
+            <div class="fusion-box">
+
+                <i class="fas fa-heart-pulse"></i>
+
+                <h3>Clinical Data</h3>
+
+                <p>Laboratory Parameters</p>
+
+            </div>
+
+            <div class="fusion-arrow">
+                →
+            </div>
+
+            <div class="fusion-box">
+
+                <i class="fas fa-brain"></i>
+
+                <h3>Fusion Engine</h3>
+
+                <p>AI Decision Layer</p>
+
+            </div>
+
+            <div class="fusion-arrow">
+                →
+            </div>
+
+            <div class="fusion-box">
+
+                <i class="fas fa-x-ray"></i>
+
+                <h3>Ultrasound Data</h3>
+
+                <p>Deep Learning Features</p>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <div class="fusion-card">
+
+            <h2>
+
+                Comprehensive Patient Assessment
+
+            </h2>
+
+            <p>
+
+                Enter patient clinical values and upload
+                ultrasound image for multimodal prediction.
+
+            </p>
+
+            <form method="POST"
+                  enctype="multipart/form-data"
+                  action="/predict_combined">
+
+                <div class="fusion-grid">
+
+                    <input type="number"
+                           placeholder="Age"
+                           name="age">
+
+                    <input type="number"
+                           placeholder="Blood Pressure"
+                           name="bp">
+
+                    <input type="number"
+                           placeholder="Serum Creatinine"
+                           name="sc">
+
+                    <input type="number"
+                           placeholder="Blood Glucose"
+                           name="bgr">
+
+                    <input type="number"
+                           placeholder="Hemoglobin"
+                           name="hemo">
+
+                    <input type="number"
+                           placeholder="Albumin"
+                           name="al">
+
+                </div>
+
+                <div class="fusion-upload">
+
+                    <label>
+
+                        Upload Ultrasound Image
+
+                    </label>
+
+                    <input type="file"
+                           name="image">
+
+                </div>
+
+                <button type="submit"
+                        class="fusion-btn">
+
+                    Run Multimodal Assessment
+
+                </button>
+
+            </form>
+
+        </div>
+    <div class="ai-status-grid">
+
+    <div class="status-card">
+
+    <i class="fas fa-heart-pulse"></i>
+
+    <h3>Clinical Model</h3>
+
+    <p>XGBoost</p>
+
+    </div>
+
+    <div class="status-card">
+
+    <i class="fas fa-x-ray"></i>
+
+    <h3>Ultrasound Model</h3>
+
+    <p>ResNet18 CNN</p>
+
+    </div>
+
+    <div class="status-card">
+
+    <i class="fas fa-brain"></i>
+
+    <h3>Fusion Engine</h3>
+
+    <p>Active</p>
+
+    </div>
+
+    <div class="status-card">
+
+    <i class="fas fa-file-medical"></i>
+
+    <h3>Report System</h3>
+
+    <p>Enabled</p>
+
+    </div>
+</div>
+
+    </main>
+
+</body>
+</html>

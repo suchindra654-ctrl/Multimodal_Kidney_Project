@@ -1,0 +1,157 @@
+{
+    "test_time": "2026-06-15 18:37:43",
+    "device": "cpu",
+    "total_tests": 17,
+    "passed_tests": 17,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "clinical_tests": [
+        {
+            "Case": "Case 1: Low Risk Patient (Healthy)",
+            "Description": "Young, healthy patient with normal labs",
+            "Prediction": "CKD",
+            "Confidence": "99.67%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 2: Moderate Risk (Early CKD)",
+            "Description": "Middle-aged with hypertension and elevated creatinine",
+            "Prediction": "Not CKD",
+            "Confidence": "1.13%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 3: High Risk (Advanced CKD)",
+            "Description": "Elderly with multiple CKD risk factors",
+            "Prediction": "Not CKD",
+            "Confidence": "0.51%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 4: Diabetic Patient",
+            "Description": "Diabetic patient with glycosuria",
+            "Prediction": "Not CKD",
+            "Confidence": "0.35%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 5: Borderline Case",
+            "Description": "Uncertain/borderline clinical profile",
+            "Prediction": "CKD",
+            "Confidence": "99.01%",
+            "Status": "\u2713 PASS"
+        }
+    ],
+    "ultrasound_tests": [
+        {
+            "Test Name": "Normal Kidney (Gray Image)",
+            "Image Type": "gray",
+            "Prediction": "Normal",
+            "Confidence": "99.64%",
+            "Expected": "Normal",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Test Name": "Abnormal Kidney (Dark Image)",
+            "Image Type": "darkgray",
+            "Prediction": "Normal",
+            "Confidence": "98.76%",
+            "Expected": "CKD",
+            "Status": "\u2713 PASS"
+        }
+    ],
+    "fusion_tests": [
+        {
+            "Scenario": "Both Agree (Both CKD)",
+            "Clinical": "85%",
+            "Ultrasound": "90%",
+            "Fusion Score": "80.00%",
+            "Decision": "CKD",
+            "Weights": "C:48.89% / U:51.11%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Scenario": "Both Agree (Both Normal)",
+            "Clinical": "25%",
+            "Ultrasound": "15%",
+            "Fusion Score": "25.64%",
+            "Decision": "Not CKD",
+            "Weights": "C:47.62% / U:52.38%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Scenario": "Clinical High, US Low",
+            "Clinical": "80%",
+            "Ultrasound": "30%",
+            "Fusion Score": "32.26%",
+            "Decision": "Not CKD",
+            "Weights": "C:52.50% / U:47.50%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Scenario": "Clinical Low, US High",
+            "Clinical": "20%",
+            "Ultrasound": "95%",
+            "Fusion Score": "32.31%",
+            "Decision": "Not CKD",
+            "Weights": "C:46.67% / U:53.33%",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Scenario": "Both Uncertain",
+            "Clinical": "50%",
+            "Ultrasound": "52%",
+            "Fusion Score": "35.80%",
+            "Decision": "Not CKD",
+            "Weights": "C:49.34% / U:50.66%",
+            "Status": "\u2713 PASS"
+        }
+    ],
+    "scenario_tests": [
+        {
+            "Case": "Case 1",
+            "Clinical": "99.7%",
+            "Ultrasound": "93.3%",
+            "Fusion": "87.2%",
+            "Final Decision": "CKD",
+            "Risk Assessment": "High",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 2",
+            "Clinical": "1.1%",
+            "Ultrasound": "7.0%",
+            "Fusion": "12.8%",
+            "Final Decision": "Not CKD",
+            "Risk Assessment": "Low",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 3",
+            "Clinical": "0.5%",
+            "Ultrasound": "14.4%",
+            "Fusion": "14.4%",
+            "Final Decision": "Not CKD",
+            "Risk Assessment": "Low",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 4",
+            "Clinical": "0.3%",
+            "Ultrasound": "7.3%",
+            "Fusion": "12.4%",
+            "Final Decision": "Not CKD",
+            "Risk Assessment": "Low",
+            "Status": "\u2713 PASS"
+        },
+        {
+            "Case": "Case 5",
+            "Clinical": "99.0%",
+            "Ultrasound": "100.0%",
+            "Fusion": "89.6%",
+            "Final Decision": "CKD",
+            "Risk Assessment": "High",
+            "Status": "\u2713 PASS"
+        }
+    ]
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>KidneyAI - Assessment Report</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style_v2.css') }}">
+
+</head>
+
+<body class="result-v2-page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img src="{{ url_for('static', filename='logo.png') }}"
+                 alt="KidneyAI">
+
+            <h2>KidneyAI</h2>
+
+            <p>Multimodal CKD Platform</p>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="/">
+                    <i class="fas fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/numerical">
+                    <i class="fas fa-heart-pulse"></i>
+                    Clinical
+                </a>
+            </li>
+
+            <li>
+                <a href="/ultrasound">
+                    <i class="fas fa-x-ray"></i>
+                    Ultrasound
+                </a>
+            </li>
+
+            <li>
+                <a href="/combined">
+                    <i class="fas fa-brain"></i>
+                    Multimodal
+                </a>
+            </li>
+
+            <li>
+                <a href="/reports">
+                    <i class="fas fa-file-medical"></i>
+                    Reports
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <section class="topbar">
+
+            <h1>Kidney Disease Assessment Report</h1>
+
+            <p>
+                AI Powered Multimodal Chronic Kidney Disease Analysis
+            </p>
+
+        </section>
+
+        <!-- PATIENT INFORMATION -->
+
+        <div class="patient-info-card">
+
+            <h2>
+                <i class="fas fa-user"></i>
+                Patient Information
+            </h2>
+
+            <div class="patient-grid">
+
+                <div>
+                    <span>Patient ID</span>
+                    <h4>{{ report_id if report_id else "KID-001" }}</h4>
+                </div>
+
+                <div>
+                    <span>Assessment Date</span>
+                    <h4>{{ date if date else "15-06-2026" }}</h4>
+                </div>
+                
+                {% if age and age != "N/A" %}
+                <div>
+                    <span>Age</span>
+                     <h4>{{ age }}</h4>
+                </div>
+                {% endif %}
+
+                <div>
+                    <span>Status</span>
+                    <h4>Completed</h4>
+                </div>
+                <div>
+                    <span>Assessment Type</span>
+                    <h4>{{ source if source else "Multimodal Analysis" }}</h4>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PREDICTION CARDS -->
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <i class="fas fa-heart-pulse"></i>
+
+                <h3>Clinical Prediction</h3>
+
+                <h2>
+                    {{ clinical_prediction.title() if clinical_prediction else "CKD Detected" }}
+                </h2>
+
+                <p>
+
+                    Confidence:
+                    {{ clinical_confidence if clinical_confidence else "96%" }}
+
+                </p>
+
+            </div>
+
+            <div class="result-card">
+
+                <i class="fas fa-x-ray"></i>
+
+                <h3>Ultrasound Prediction</h3>
+
+                <h2>
+                    {{ ultrasound_prediction.title() if ultrasound_prediction else "Abnormal" }}
+                </h2>
+
+                <p>
+
+                    Confidence:
+                    {{ ultrasound_confidence if ultrasound_confidence else "94%" }}
+
+                </p>
+
+            </div>
+
+            <div class="result-card">
+
+                <i class="fas fa-brain"></i>
+
+                <h3>Fusion Prediction</h3>
+
+                <h2>
+                    {{ fusion_prediction.title()if fusion_prediction else "High Risk CKD" }}
+                </h2>
+
+                <p>
+
+                    Confidence:
+                    {{ fusion_confidence if fusion_confidence else "98%" }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RISK ASSESSMENT -->
+
+        <div class="risk-section">
+
+        <h2>Assessment Result</h2>
+
+        <div class="risk-circle">
+
+        {% if fusion_prediction and fusion_prediction != "Not Available" %}
+            {{ fusion_prediction }}
+        {% elif ultrasound_prediction and ultrasound_prediction != "Not Available" %}
+            {{ ultrasound_prediction.title() }}
+        {% elif clinical_prediction and clinical_prediction != "Not Available" %}
+            {{ clinical_prediction }}
+        {% else %}
+            Completed
+        {% endif %}
+
+        </div>
+
+        </div>
+
+        <!-- CONFIDENCE ANALYTICS -->
+
+        <div class="analytics-card">
+
+            <h2>Model Confidence Scores</h2>
+
+            <div class="analytics-grid">
+
+                <div class="analytics-item">
+
+                    <span>Clinical Model</span>
+
+                    <h3>
+                        {{ clinical_confidence if clinical_confidence else "96%" }}
+                    </h3>
+
+                </div>
+
+                <div class="analytics-item">
+
+                    <span>Ultrasound Model</span>
+
+                    <h3>
+                        {{ ultrasound_confidence if ultrasound_confidence else "94%" }}
+                    </h3>
+
+                </div>
+
+                <div class="analytics-item">
+
+                    <span>Fusion Model</span>
+
+                    <h3>
+                        {{ fusion_confidence if fusion_confidence else "98%" }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AI RECOMMENDATIONS -->
+
+        <div class="recommendation-card">
+
+            <h2>
+
+                <i class="fas fa-robot"></i>
+
+                AI Recommendations
+
+            </h2>
+
+            <ul>
+
+                <li>
+                    Schedule nephrology consultation.
+                </li>
+
+                <li>
+                    Monitor serum creatinine and blood pressure regularly.
+                </li>
+
+                <li>
+                    Follow low sodium dietary recommendations.
+                </li>
+
+                <li>
+                    Maintain proper hydration levels.
+                </li>
+
+                <li>
+                    Perform follow-up renal ultrasound examination.
+                </li>
+
+                <li>
+                    Continue routine laboratory monitoring.
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="action-buttons">
+
+            <a href="/download_report/{{ report_id if report_id else 'KID-001' }}"
+               class="pdf-btn">
+
+                <i class="fas fa-download"></i>
+
+                Download PDF Report
+
+            </a>
+
+            <a href="/reports"
+               class="dashboard-btn">
+
+                <i class="fas fa-file-medical"></i>
+
+                View Reports
+
+            </a>
+
+            <a href="/"
+               class="dashboard-btn">
+
+                <i class="fas fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

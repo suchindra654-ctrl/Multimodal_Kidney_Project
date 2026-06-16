@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>KidneyAI Reports</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style_v2.css') }}">
+
+</head>
+
+<body class="reports-v2-page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <img src="{{ url_for('static', filename='logo.png') }}">
+
+            <h2>KidneyAI</h2>
+
+            <p>Multimodal CKD Platform</p>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="/">
+                    <i class="fas fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/numerical">
+                    <i class="fas fa-heart-pulse"></i>
+                    Clinical
+                </a>
+            </li>
+
+            <li>
+                <a href="/ultrasound">
+                    <i class="fas fa-x-ray"></i>
+                    Ultrasound
+                </a>
+            </li>
+
+            <li>
+                <a href="/combined">
+                    <i class="fas fa-brain"></i>
+                    Multimodal
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fas fa-file-medical"></i>
+                    Reports
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <section class="topbar">
+
+            <h1>Patient Reports Dashboard</h1>
+
+            <p>
+                View and manage all AI generated CKD assessment reports.
+                Reports are automatically saved after every prediction.
+            </p>
+
+        </section>
+
+        <!-- STATS -->
+
+        <div class="reports-stats">
+
+            <div class="status-card">
+                <i class="fas fa-file-medical"></i>
+                <h3>{{ stats.total_reports }}</h3>
+                <p>Total Reports</p>
+            </div>
+
+            <div class="status-card">
+                <i class="fas fa-virus"></i>
+                <h3>{{ stats.total_ckd }}</h3>
+                <p>CKD Cases</p>
+            </div>
+
+            <div class="status-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>{{ stats.total_normal }}</h3>
+                <p>Normal Cases</p>
+            </div>
+
+            <div class="status-card">
+                <i class="fas fa-brain"></i>
+                <h3>AI Active</h3>
+                <p>System Status</p>
+            </div>
+
+        </div>
+
+        <!-- REPORT TABLE -->
+
+        <div class="reports-table-card">
+
+            {% if reports %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Date</th>
+                        <th>Prediction</th>
+                        <th>Confidence</th>
+                        <th>Source</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for report in reports %}
+
+                    <tr>
+
+                        <td>{{ report.report_id }}</td>
+
+                        <td>{{ report.date }}</td>
+
+                        <td>{{ report.prediction }}</td>
+
+                        <td>{{ report.probability }}%</td>
+
+                        <td>{{ report.source }}</td>
+
+                        <td>
+
+                            <a href="/report/{{ report.report_id }}"
+                               class="btn view-btn">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </a>
+
+                            <a href="/download_report/{{ report.report_id }}"
+                               class="btn download-btn">
+                                <i class="fas fa-download"></i>
+                                PDF
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <i class="fas fa-file-medical"></i>
+
+                <h2>No Reports Available</h2>
+
+                <p>
+                    Generate a prediction to automatically create
+                    your first medical assessment report.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- ANALYTICS -->
+
+        <div class="analytics-card">
+
+            <h2>System Analytics</h2>
+
+            <div class="analytics-grid">
+
+                <div class="analytics-item">
+                    <span>CKD Cases</span>
+                    <h3>{{ stats.total_ckd }}</h3>
+                </div>
+
+                <div class="analytics-item">
+                    <span>Normal Cases</span>
+                    <h3>{{ stats.total_normal }}</h3>
+                </div>
+
+                <div class="analytics-item">
+                    <span>Total Reports</span>
+                    <h3>{{ stats.total_reports }}</h3>
+                </div>
+
+                <div class="analytics-item">
+                    <span>System Status</span>
+                    <h3>Active</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | KidneyAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+
+</head>
+<body class="reports-page">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="KidneyAI Logo">
+
+    <div>
+
+        <h2>KidneyAI</h2>
+
+        <p>
+            Multimodal Disease Assessment Platform
+        </p>
+
+    </div>
+
+</div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/numerical">Clinical</a></li>
+            <li><a href="/ultrasound">Ultrasound</a></li>
+            <li><a href="/combined">Multimodal</a></li>
+            <li><a href="/reports">Reports</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- HEADER -->
+
+    <section class="header">
+
+        <h1>Patient Reports</h1>
+
+        <p>
+            View and manage all previously generated kidney disease
+            assessment reports. Reports are automatically saved after
+            every prediction.
+        </p>
+
+    </section>
+
+    <!-- REPORT TABLE -->
+
+    <div class="container">
+
+        <div class="reports-card">
+
+            {% if reports %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Date</th>
+                        <th>Prediction</th>
+                        <th>Confidence</th>
+                        <th>Source</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for report in reports %}
+
+                    <tr>
+
+                        <td>{{ report.report_id }}</td>
+
+                        <td>{{ report.date }}</td>
+
+                        <td>{{ report.prediction }}</td>
+
+                        <td>{{ report.probability }}%</td>
+
+                        <td>{{ report.source }}</td>
+
+                        <td>
+
+                            <a href="/report/{{ report.report_id }}"
+                               class="btn view-btn">
+
+                                <i class="fas fa-eye"></i>
+                                View
+
+                            </a>
+
+                            <a href="/download_report/{{ report.report_id }}"
+                               class="btn download-btn">
+
+                                <i class="fas fa-download"></i>
+                                PDF
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <i class="fas fa-file-medical"></i>
+
+                <h2>No Reports Available</h2>
+
+                <p>
+                    Generate a prediction to automatically create
+                    your first medical assessment report.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>
+            © 2026 KidneyAI | Report Management System
+        </p>
+
+    </footer>
+
+</body>
+</html>
+

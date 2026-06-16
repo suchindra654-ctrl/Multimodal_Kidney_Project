@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultrasound Analysis | KidneyAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        function previewImage(event){
+            const image =
+                document.getElementById(
+                    "previewImage"
+                );
+
+            const container =
+                document.getElementById(
+                    "previewContainer"
+                );
+
+            image.src =
+                URL.createObjectURL(
+                    event.target.files[0]
+                );
+
+            container.style.display =
+                "block";
+        }
+    </script>
+
+</head>
+<body class="ultrasound-page">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="KidneyAI Logo">
+
+    <div>
+
+        <h2>KidneyAI</h2>
+
+        <p>
+            Multimodal Disease Assessment Platform
+        </p>
+
+    </div>
+
+</div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/numerical">Clinical</a></li>
+            <li><a href="/ultrasound">Ultrasound</a></li>
+            <li><a href="/combined">Multimodal</a></li>
+            <li><a href="/reports">Reports</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- HEADER -->
+
+    <section class="header">
+
+        <h1>
+            Renal Ultrasound Image Analysis
+        </h1>
+
+        <p>
+            Upload a kidney ultrasound image and allow the
+            Deep Learning CNN model to analyze renal abnormalities.
+            The model uses a trained ResNet18 architecture for
+            automated ultrasound classification.
+        </p>
+
+    </section>
+
+    <!-- CONTENT -->
+
+    <div class="container">
+
+        <div class="upload-card">
+
+            <h2 class="section-title">
+
+                Upload Ultrasound Image
+
+            </h2>
+
+            <form
+                action="/predict_ultrasound"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <label
+                    class="upload-zone"
+                    for="imageInput">
+
+                    <i class="fas fa-cloud-upload-alt"></i>
+
+                    <h3>
+                        Click to Upload Ultrasound Image
+                    </h3>
+
+                    <p>
+                        Supported Formats:
+                        JPG, JPEG, PNG
+                    </p>
+
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    id="imageInput"
+                    accept=".jpg,.jpeg,.png"
+                    required>
+
+                <div
+                    class="preview-container"
+                    id="previewContainer">
+
+                    <img
+                        id="previewImage"
+                        alt="Preview">
+
+                </div>
+
+                <div class="submit-section">
+
+                    <button
+                        type="submit"
+                        class="btn">
+
+                        <i class="fas fa-microscope"></i>
+
+                        Analyze Ultrasound
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- MODEL INFO -->
+
+            <div class="info-section">
+
+                <div class="info-card">
+
+                    <i class="fas fa-brain"></i>
+
+                    <h3>Deep Learning</h3>
+
+                    <p>
+                        ResNet18 Convolutional Neural Network.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-images"></i>
+
+                    <h3>Dataset</h3>
+
+                    <p>
+                        Trained on 9416 kidney ultrasound images.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h3>Performance</h3>
+
+                    <p>
+                        Optimized CNN architecture for image classification.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-file-medical"></i>
+
+                    <h3>Reports</h3>
+
+                    <p>
+                        Automatic report generation and storage.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 KidneyAI | Ultrasound Analysis Module
+        </p>
+
+    </footer>
+
+    <!-- IMAGE PREVIEW -->
+
+    <script>
+
+        function previewImage(event){
+
+            const image =
+                document.getElementById(
+                    "previewImage"
+                );
+
+            const container =
+                document.getElementById(
+                    "previewContainer"
+                );
+
+            image.src =
+                URL.createObjectURL(
+                    event.target.files[0]
+                );
+
+            container.style.display =
+                "block";
+
+        }
+
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidneyAI Diagnostic Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .report-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .report-header {
+            text-align: center;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .report-header h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .report-header p {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin: 5px 0 0 0;
+        }
+
+        .report-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .info-section h3 {
+            color: #1abc9c;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .info-item {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .info-item label {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .info-item span {
+            color: #2c3e50;
+        }
+
+        .diagnosis-box {
+            background: #d5f4e6;
+            border-left: 4px solid #1abc9c;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .diagnosis-title {
+            color: #1abc9c;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .diagnosis-text {
+            color: #2c3e50;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .confidence-score {
+            color: #1abc9c;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .metric-card h4 {
+            color: #7f8c8d;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+        }
+
+        .metric-value {
+            color: #1abc9c;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .parameters-section h3 {
+            color: #2c3e50;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1abc9c;
+            text-transform: uppercase;
+        }
+
+        .parameters-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .parameters-table thead {
+            background: #1abc9c;
+            color: white;
+        }
+
+        .parameters-table th {
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .parameters-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 13px;
+        }
+
+        .parameters-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .parameters-table tbody tr:hover {
+            background: #f0faf7;
+        }
+
+        .recommendations-section h3 {
+            color: #2c3e50;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1abc9c;
+            text-transform: uppercase;
+        }
+
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recommendations-list li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f0faf7;
+            border-left: 4px solid #1abc9c;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+
+        .interpretation-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .interpretation-section h3 {
+            color: #2c3e50;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+        }
+
+        .interpretation-section p {
+            color: #2c3e50;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn.primary {
+            background: #1abc9c;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background: #16a085;
+        }
+
+        .btn.secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+            border: 1px solid #bdc3c7;
+        }
+
+        .btn.secondary:hover {
+            background: #d5dbdb;
+        }
+
+        .btn.success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn.success:hover {
+            background: #229954;
+        }
+
+        .print-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #95a5a6;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .navbar, footer, .actions {
+                display: none;
+            }
+            .report-container {
+                max-width: 100%;
+                margin: 0;
+                padding: 20px;
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        .risk-low {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .risk-moderate {
+            background: #fef5e7;
+            color: #f39c12;
+        }
+
+        .risk-high {
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body class="result-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="KidneyAI Logo">
+            <div>
+                <h2>KidneyAI</h2>
+                <p>Multimodal Disease Assessment Platform</p>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/numerical">Clinical</a></li>
+            <li><a href="/ultrasound">Ultrasound</a></li>
+            <li><a href="/combined">Multimodal</a></li>
+            <li><a href="/reports">Reports</a></li>
+        </ul>
+    </nav>
+
+    <!-- REPORT -->
+    <div class="report-container">
+        
+        <!-- REPORT HEADER -->
+        <div class="report-header">
+            <h1>KidneyAI Diagnostic Report</h1>
+            <p>AI-Powered Chronic Kidney Disease Assessment</p>
+        </div>
+
+        <!-- REPORT INFORMATION -->
+        <div class="report-info">
+            <div class="info-section">
+                <h3>Report Information</h3>
+                <div class="info-item">
+                    <label>Report ID:</label>
+                    <span>{{ report_id }}</span>
+                </div>
+                <div class="info-item">
+                    <label>Date & Time:</label>
+                    <span id="report-date"></span>
+                </div>
+                <div class="info-item">
+                    <label>Assessment Source:</label>
+                    <span>{{ source }}</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>Analysis Summary</h3>
+                <div class="info-item">
+                    <label>Prediction Status:</label>
+                    <span>{{ prediction }}</span>
+                </div>
+                <div class="info-item">
+                    <label>Confidence Score:</label>
+                    <span>{{ probability }}%</span>
+                </div>
+                <div class="info-item">
+                    <label>Risk Level:</label>
+                    <span id="risk-label"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGNOSIS BOX -->
+        <div class="diagnosis-box">
+            <div class="diagnosis-title">
+                {% if prediction == "CKD" %}
+                    Chronic Kidney Disease Suspected
+                {% else %}
+                    No Evidence of CKD
+                {% endif %}
+            </div>
+            <div class="confidence-score">Confidence: {{ probability }}%</div>
+        </div>
+
+        <!-- METRICS -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h4>Confidence</h4>
+                <p class="metric-value">{{ probability }}%</p>
+            </div>
+            
+            {% if numerical_score is defined %}
+            <div class="metric-card">
+                <h4>Clinical Score</h4>
+                <p class="metric-value">{{ numerical_score }}%</p>
+            </div>
+            {% endif %}
+
+            {% if ultrasound_score is defined %}
+            <div class="metric-card">
+                <h4>Ultrasound Score</h4>
+                <p class="metric-value">{{ ultrasound_score }}%</p>
+            </div>
+            {% endif %}
+
+            {% if not ultrasound_score is defined and not numerical_score is defined %}
+            <div class="metric-card">
+                <h4>Risk Assessment</h4>
+                <p class="metric-value" id="risk-metric">—</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- PATIENT CLINICAL PARAMETERS -->
+        {% if patient_data %}
+        <div class="parameters-section">
+            <h3>Patient Clinical Parameters</h3>
+            <table class="parameters-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set param_display = {
+                        'age': 'Age',
+                        'bp': 'Blood Pressure',
+                        'sg': 'Specific Gravity',
+                        'al': 'Albumin',
+                        'su': 'Sugar',
+                        'bgr': 'Blood Glucose Random',
+                        'bu': 'Blood Urea',
+                        'sc': 'Serum Creatinine',
+                        'sod': 'Sodium',
+                        'pot': 'Potassium',
+                        'hemo': 'Hemoglobin',
+                        'pcv': 'Packed Cell Volume',
+                        'wc': 'White Blood Cell Count',
+                        'rc': 'Red Blood Cell Count',
+                        'htn': 'Hypertension',
+                        'dm': 'Diabetes Mellitus',
+                        'cad': 'Coronary Artery Disease',
+                        'pe': 'Pedal Edema',
+                        'ane': 'Anemia'
+                    } %}
+                    {% for param, value in patient_data.items() %}
+                        {% if param in param_display %}
+                        <tr>
+                            <td>{{ param_display[param] }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- CLINICAL RECOMMENDATIONS -->
+        <div class="recommendations-section">
+            <h3>Clinical Recommendations</h3>
+            <ul class="recommendations-list">
+                {% if prediction == "CKD" and probability >= 80 %}
+                    <li>✓ Schedule urgent consultation with nephrologist</li>
+                    <li>✓ Perform additional diagnostic tests (ultrasound, lab work)</li>
+                    <li>✓ Monitor kidney function regularly</li>
+                    <li>✓ Review medication adjustments with healthcare provider</li>
+                {% elif prediction == "CKD" and probability >= 50 %}
+                    <li>✓ Schedule routine consultation with nephrologist</li>
+                    <li>✓ Perform follow-up diagnostic tests</li>
+                    <li>✓ Monitor clinical parameters regularly</li>
+                    <li>✓ Implement lifestyle modifications as recommended</li>
+                {% else %}
+                    <li>✓ Continue regular health monitoring</li>
+                    <li>✓ Maintain healthy lifestyle habits</li>
+                    <li>✓ Schedule periodic clinical assessments</li>
+                    <li>✓ Follow preventive health guidelines</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- CLINICAL INTERPRETATION -->
+        <div class="interpretation-section">
+            <h3>Clinical Interpretation</h3>
+            <p>
+                This AI-powered diagnostic report provides clinical decision support based on the multimodal analysis of patient clinical parameters and/or renal ultrasound imaging. The assessment is designed to assist healthcare professionals in identifying potential cases of Chronic Kidney Disease. However, this report should be interpreted in conjunction with comprehensive clinical evaluation, laboratory results, and imaging studies. A qualified healthcare professional must review all findings and clinical context before making any diagnostic or treatment decisions.
+            </p>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+            <a href="/" class="btn primary">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="/reports" class="btn secondary">
+                <i class="fas fa-list"></i> View Reports
+            </a>
+            {% if report_id is defined %}
+            <a href="/download_report/{{ report_id }}" class="btn success">
+                <i class="fas fa-download"></i> Download PDF
+            </a>
+            <button onclick="window.print()" class="btn secondary">
+                <i class="fas fa-print"></i> Print Report
+            </button>
+            {% endif %}
+        </div>
+
+        <!-- PRINT FOOTER -->
+        <div class="print-footer">
+            <p>Generated by KidneyAI | Multimodal Chronic Kidney Disease Prediction Framework | {{ report_id }}</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 KidneyAI | Multimodal Chronic Kidney Disease Prediction Framework</p>
+    </footer>
+
+    <script>
+        // Set current date/time
+        document.getElementById('report-date').textContent = new Date().toLocaleString();
+
+        // Set risk level badge
+        const confidenceScore = { probability };
+        const riskLabel = document.getElementById('risk-label');
+        const riskMetric = document.getElementById('risk-metric');
+        let riskClass = 'risk-low';
+        let riskText = 'Low Risk';
+
+        if (confidenceScore >= 80) {
+            riskClass = 'risk-high';
+            riskText = 'High Risk';
+        } else if (confidenceScore >= 50) {
+            riskClass = 'risk-moderate';
+            riskText = 'Moderate Risk';
+        }
+
+        if (riskLabel) {
+            riskLabel.textContent = riskText;
+            riskLabel.className = riskClass;
+        }
+
+        if (riskMetric) {
+            riskMetric.textContent = riskText;
+            riskMetric.parentElement.className = 'metric-card ' + riskClass;
+        }
+    </script>
+
+</body>
+</html>
