@@ -8,7 +8,7 @@ numpy
 pandas
 pillow
 joblib==1.4.2
-xgboost
+xgboost==1.7.6
 scikit-learn==1.6.1
 gunicorn
 reportlab
