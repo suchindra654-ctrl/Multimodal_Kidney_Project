@@ -18,9 +18,7 @@ An AI-powered healthcare application that predicts **Chronic Kidney Disease (CKD
 
 ## 🏠 Dashboard
 
-<p align="center">
-<img src="assets/dashboard.png" width="900">
-</p>
+![Dashboard](assets/dashboard.png)
 
 The dashboard provides access to:
 
@@ -33,9 +31,7 @@ The dashboard provides access to:
 
 ## 📊 Clinical Assessment
 
-<p align="center">
-<img src="assets/clinical.png" width="900">
-</p>
+![Clinical Assessment](assets/clinical.png)
 
 The Clinical Assessment page allows users to enter patient information including:
 
@@ -52,10 +48,7 @@ The XGBoost model predicts whether the patient is likely to have CKD.
 ---
 
 ## 🩻 Renal Ultrasound Analysis
-
-<p align="center">
-<img src="assets/ultrasound.png" width="900">
-</p>
+![Ultrasound Analysis](assets/ultrasound.png)
 
 Upload a renal ultrasound image.
 
@@ -68,9 +61,7 @@ The ResNet18 deep learning model analyzes the kidney ultrasound and predicts:
 
 ## 🧠 Multimodal Prediction
 
-<p align="center">
-<img src="assets/result.png" width="900">
-</p>
+![Prediction](assets/result.png)
 
 The application combines:
 
@@ -90,9 +81,7 @@ Displayed results include:
 
 ## 📄 Medical Report
 
-<p align="center">
-<img src="assets/report.png" width="900">
-</p>
+![Prediction](assets/result.png)
 
 Automatically generated report includes:
 
@@ -108,17 +97,13 @@ Reports can be downloaded as PDF.
 
 # 🏗️ System Architecture
 
-<p align="center">
-<img src="assets/architecture.png" width="900">
-</p>
+![Architecture](assets/architecture.png)
 
 ---
 
 # 🔄 Workflow
 
-<p align="center">
-<img src="assets/workflow.png" width="900">
-</p>
+![Workflow](assets/workflow.png)
 
 ---
 
